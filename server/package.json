@@ -1,0 +1,14 @@
+{
+  "name": "blog_server",
+  "version": "1.0.0",
+  "description": "A simple server for a simple Blog App",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gabriel Gomez (gabrielgagz)",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
