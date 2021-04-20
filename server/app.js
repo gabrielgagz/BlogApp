@@ -3,7 +3,7 @@
 const bodyParser = require('body-parser');
 const app = require('./helpers/express');
 const cors = require('cors');
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 // Allow cors
 app.use(cors());
