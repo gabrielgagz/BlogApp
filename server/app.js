@@ -1,5 +1,8 @@
 'use-strict'
 
+// Load env vars
+require('./helpers/dotenv');
+
 const bodyParser = require('body-parser');
 const app = require('./helpers/express');
 const cors = require('cors');
@@ -16,9 +19,9 @@ app.use(
     })
 );
 
-// app.get('/', (request, response) => {
-//     response.json({ info: 'Blog App API' })
-// });
+app.get('/', (request, response) => {
+    response.json({ info: 'Blog App API' })
+});
 
 app.listen(port, () => {
     console.log(`Blog App Server running on port ${port}.`)
