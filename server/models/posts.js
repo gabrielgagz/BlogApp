@@ -19,6 +19,7 @@ const Post = sequelize.define('posts', {
     { freezeTableName: true } 
 );
 
+// TODO: needs some improvement
 sequelize.sync({ force: false , alter : true });
 
 module.exports = Post;

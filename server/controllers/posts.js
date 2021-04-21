@@ -2,6 +2,7 @@
 
 const Post = require('../models/posts');
 
+// Get all posts
 const getPosts = async (request, response) => {
 
     try {
@@ -14,6 +15,22 @@ const getPosts = async (request, response) => {
         console.log(error)
 
     } 
+}
+
+const getPostById = async (request, response) => {
+
+    const id = parseInt(request.params.id);
+
+    try {
+        
+        const idPost = await Post.findByPk( id );
+        return response.json( idPost ) 
+
+    } catch (error) {
+        
+        console.log(error)
+
+    }
 }
 
 const createPost = async (request, response) => {
@@ -38,7 +55,49 @@ const createPost = async (request, response) => {
     } 
 }
 
+const updatePost = async (request, response) => {
+
+    const id = parseInt(request.params.id);
+    const { category, content, date, image, title } = request.body;
+
+    try {
+        
+        await Post.update({
+            category,
+            content,
+            date,
+            image,
+            title
+        }, { where: { id } } );
+        return response.json( {success: true} ); 
+
+    } catch (error) {
+        
+        console.log(error);
+
+    } 
+}
+
+const deletePost = async (request, response) => {
+
+    const id = parseInt(request.params.id);
+
+    try {
+        
+        await Post.destroy( { where: { id } } );
+        return response.json( {success: true} ); 
+
+    } catch (error) {
+        
+        console.log(error);
+
+    } 
+}
+
 module.exports = { 
     getPosts,
-    createPost
+    getPostById,
+    createPost,
+    updatePost,
+    deletePost
 }
