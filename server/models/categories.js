@@ -15,4 +15,6 @@ const Category = sequelize.define('categories', {
     { freezeTableName: true } 
 );
 
+sequelize.sync({ force: false , alter : true });
+
 module.exports = Category;

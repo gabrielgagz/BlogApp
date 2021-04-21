@@ -2,19 +2,20 @@
 
 const Category = require('../models/categories');
 
-const insertCategory = async () => {
+// const insertCategory = async () => {
 
-    try {
+//     try {
         
-        await Category.create({
-            name: 'Test2'
-        });    
+//         await Category.create({
+//             name: 'Test2'
+//         });    
 
-    } catch (error) {
+//     } catch (error) {
         
-        console.log(error)
+//         console.log(error)
 
-    } 
-}
+//     } 
+// }
 
-insertCategory();
+
+// insertCategory();

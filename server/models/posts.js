@@ -4,8 +4,12 @@ const { sequelize, Sequelize } = require('../helpers/sequelize');
 
 const Post = sequelize.define('posts', {
 
-    id: {type: Sequelize.SMALLINT, primaryKey: true},
-    category: {type: Sequelize.STRING, foreingKey: true},
+    id: {
+        type: Sequelize.SMALLINT,
+        autoIncrement: true, 
+        primaryKey: true, 
+    },
+    category: {type: Sequelize.SMALLINT, foreingKey: true},
     content: Sequelize.TEXT,
     date: Sequelize.DATE,
     image: Sequelize.STRING,
@@ -14,5 +18,7 @@ const Post = sequelize.define('posts', {
 },
     { freezeTableName: true } 
 );
+
+sequelize.sync({ force: false , alter : true });
 
 module.exports = Post;
