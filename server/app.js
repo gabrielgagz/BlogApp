@@ -26,3 +26,7 @@ app.get('/', (request, response) => {
 app.listen(port, () => {
     console.log(`Blog App Server running on port ${port}.`)
 });
+
+// Routes
+const postsRoutes = require('./routes/posts');
+const categoriesRoutes = require('./routes/categories');
