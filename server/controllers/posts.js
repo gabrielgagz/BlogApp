@@ -7,7 +7,9 @@ const getPosts = async (request, response) => {
 
     try {
         
-        const allPosts = await Post.findAll();
+        const allPosts = await Post.findAll( { 
+            attributes: ['title', 'content', 'date', 'image'] 
+        });
         return response.json( allPosts ) 
 
     } catch (error) {
@@ -23,7 +25,9 @@ const getPostById = async (request, response) => {
 
     try {
         
-        const idPost = await Post.findByPk( id );
+        const idPost = await Post.findByPk( id, { 
+            attributes: ['title', 'content', 'date', 'image'] 
+        } );
         return response.json( idPost ) 
 
     } catch (error) {

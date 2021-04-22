@@ -7,7 +7,9 @@ const getCategories = async (request, response) => {
 
     try {
         
-        const allCategories = await Category.findAll();
+        const allCategories = await Category.findAll( { 
+            attributes: ['name'] 
+        } );
         return response.json( allCategories ) 
 
     } catch (error) {
@@ -23,7 +25,9 @@ const getCategoryById = async (request, response) => {
 
     try {
         
-        const idCategory = await Category.findByPk( id );
+        const idCategory = await Category.findByPk( id, { 
+            attributes: ['name'] 
+        } );
         return response.json( idCategory ) 
 
     } catch (error) {
