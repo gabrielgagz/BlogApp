@@ -1,25 +1,49 @@
 'use-strict'
 
 const { sequelize, Sequelize } = require('../helpers/sequelize');
+const Category = require('./categories');
 
 const Post = sequelize.define('posts', {
 
     id: {
-        type: Sequelize.SMALLINT,
+        type: Sequelize.INTEGER,
         autoIncrement: true, 
-        primaryKey: true, 
+        primaryKey: true,
+        required: true,
+        allowNull: false
     },
-    category: {type: Sequelize.SMALLINT, foreingKey: true},
-    content: Sequelize.TEXT,
-    date: Sequelize.DATE,
-    image: Sequelize.STRING,
-    title: Sequelize.STRING,
+    categoryId: {
+        type: Sequelize.INTEGER, 
+        required: true,
+        allowNull: false
+    },
+    content: {
+        type: Sequelize.TEXT, 
+        required: true,
+        allowNull: false
+    },
+    date: {
+        type: Sequelize.DATE, 
+        required: true,
+        allowNull: false
+    },
+    image: {
+        type: Sequelize.STRING, 
+        required: true,
+        allowNull: false
+    },
+    title: {
+        type: Sequelize.STRING, 
+        required: true,
+        allowNull: false
+    },
 
 },
     { freezeTableName: true } 
 );
 
-// TODO: needs some improvement
-sequelize.sync({ force: false , alter : true });
+Post.belongsTo(Category, {
+    foreignKey: 'categoryId'
+});
 
 module.exports = Post;

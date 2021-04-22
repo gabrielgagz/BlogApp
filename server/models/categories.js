@@ -5,17 +5,20 @@ const { sequelize, Sequelize } = require('../helpers/sequelize');
 const Category = sequelize.define('categories', {
 
     id: {
-        type: Sequelize.SMALLINT,
+        type: Sequelize.INTEGER,
         autoIncrement: true, 
-        primaryKey: true, 
+        primaryKey: true,
+        required: true,
+        allowNull: false
     },
-    name: Sequelize.STRING,
+    name: {
+        type: Sequelize.STRING, 
+        required: true,
+        allowNull: false
+    },
 
 },
     { freezeTableName: true } 
 );
-
-// TODO: needs some improvement
-sequelize.sync({ force: false , alter : true });
 
 module.exports = Category;
