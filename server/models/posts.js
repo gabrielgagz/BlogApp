@@ -43,7 +43,10 @@ const Post = sequelize.define('posts', {
 );
 
 Post.belongsTo(Category, {
-    foreignKey: 'categoryId'
+    foreignKey: {
+        name: 'categoryId',
+        allowNull: false
+    }
 });
 
 module.exports = Post;

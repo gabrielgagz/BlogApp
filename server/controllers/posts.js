@@ -35,12 +35,12 @@ const getPostById = async (request, response) => {
 
 const createPost = async (request, response) => {
 
-    const { category, content, date, image, title } = request.body;
+    const { categoryId, content, date, image, title } = request.body;
 
     try {
         
         await Post.create({
-            category,
+            categoryId,
             content,
             date,
             image,
@@ -58,12 +58,12 @@ const createPost = async (request, response) => {
 const updatePost = async (request, response) => {
 
     const id = parseInt(request.params.id);
-    const { category, content, date, image, title } = request.body;
+    const { categoryId, content, date, image, title } = request.body;
 
     try {
         
         await Post.update({
-            category,
+            categoryId,
             content,
             date,
             image,
