@@ -3,8 +3,8 @@
 const categoriesRoutes = require('../helpers/express');
 const categoriesDb = require('../controllers/categories');
 
-// Movements Routes
-// categoriesRoutes.get('/api/catagories/:id', catagoriesDb.getCategoriesById);
+// Categories Routes
+categoriesRoutes.get('/api/categories/:id', categoriesDb.getCategoryById);
 // categoriesRoutes.post('/api/categories', catagoriesDb.createCategory);
 // categoriesRoutes.patch('/api/categories/:id', catagoriesDb.updateCategory);
 // categoriesRoutes.delete('/api/categories/:id', catagoriesDb.deleteCategory);

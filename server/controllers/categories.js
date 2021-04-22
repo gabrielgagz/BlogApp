@@ -2,20 +2,20 @@
 
 const Category = require('../models/categories');
 
-// const insertCategory = async () => {
+const getCategoryById = async (request, response) => {
 
-//     try {
+    const id = parseInt(request.params.id);
+
+    try {
         
-//         await Category.create({
-//             name: 'Test2'
-//         });    
+        const idCategory = await Category.findByPk( id );
+        return response.json( idCategory ) 
 
-//     } catch (error) {
+    } catch (error) {
         
-//         console.log(error)
+        console.log(error)
 
-//     } 
-// }
+    }
+}
 
-
-// insertCategory();
+module.exports = { getCategoryById }
