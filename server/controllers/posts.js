@@ -12,7 +12,7 @@ const getPosts = async (request, response) => {
 
     } catch (error) {
         
-        console.log(error)
+        response.status(400).send(error);
 
     } 
 }
@@ -28,7 +28,7 @@ const getPostById = async (request, response) => {
 
     } catch (error) {
         
-        console.log(error)
+        response.status(400).send(error);
 
     }
 }
@@ -50,7 +50,7 @@ const createPost = async (request, response) => {
 
     } catch (error) {
         
-        console.log(error);
+        response.status(400).send(error);;
 
     } 
 }
@@ -73,7 +73,7 @@ const updatePost = async (request, response) => {
 
     } catch (error) {
         
-        console.log(error);
+        response.status(400).send(error);;
 
     } 
 }
@@ -89,7 +89,7 @@ const deletePost = async (request, response) => {
 
     } catch (error) {
         
-        console.log(error);
+        response.status(400).send(error);;
 
     } 
 }
