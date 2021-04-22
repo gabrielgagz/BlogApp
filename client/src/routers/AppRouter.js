@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-import { MainScreen } from '../components/MainScreen';
+import { MainScreen } from '../components/main/MainScreen';
 
 export const AppRouter = () => {
 
