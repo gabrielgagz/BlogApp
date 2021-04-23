@@ -41,7 +41,7 @@ export const toastHelper = ( container, value, icon ) => {
         }
 
         // Prevent api key url exposures
-        console.clear();
+        // console.clear();
 }
 
 toastHelper.propTypes = {

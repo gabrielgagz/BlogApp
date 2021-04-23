@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getCategories } from '../../helpers/apiHelper';
+import { AppContext } from '../../context/AppContext';
 import logo from '../../assets/logo.svg';
 import '../../css/navbar.css';
 
@@ -8,6 +9,9 @@ export const NavBar = () => {
 
     // TODO: improve
     const [dataState, setDataState] = useState({ init: 'init' });
+
+    // Edit State
+    const { setEdit } = useContext( AppContext );
 
     useEffect(() => {
         
@@ -74,6 +78,7 @@ export const NavBar = () => {
                                 className="btn btn-outline-secondary"
                                 data-bs-toggle='modal'      
                                 data-bs-target='#addEditModal'
+                                onClick={ () => setEdit(false) }
                             >
                                 New Post
                             </button>

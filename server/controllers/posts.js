@@ -10,7 +10,7 @@ const getPosts = async (request, response) => {
         
         const allPosts = await Post.findAll( { 
 
-            attributes: ['id', 'title', 'content', 'date', 'image'],
+            attributes: ['id', 'title', 'content', 'date', 'image', 'categoryId'],
             include: [{ model: Category, attributes: ['name'] }],
             order: [
                 ['date', 'DESC'],
@@ -33,7 +33,7 @@ const getPostById = async (request, response) => {
     try {
         
         const idPost = await Post.findByPk( id, { 
-            attributes: ['id','title', 'content', 'date', 'image'] 
+            attributes: ['id','title', 'content', 'date', 'image', 'categoryId'] 
         } );
         return response.json( idPost ) 
 

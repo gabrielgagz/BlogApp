@@ -6,13 +6,14 @@ import { AppContext } from '../../context/AppContext';
 export const MainScreen = () => {
 
     const [reload, setReload] = useState( false );
+    const [edit, setEdit] = useState( false );
 
     return (
             <>
-            <NavBar />
-            <AppContext.Provider value={{ reload, setReload }}>
-                <PostsList />
-            </AppContext.Provider>
+                <AppContext.Provider value={{ reload, setReload, edit, setEdit }}>
+                    <NavBar />
+                    <PostsList />
+                </AppContext.Provider>
             </>
     )
 }

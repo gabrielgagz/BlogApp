@@ -7,7 +7,7 @@ import { AddEditModal } from "../modal/AddEditModal";
 
 export const PostsList = () => {
 
-    const { reload } = useContext( AppContext );
+    const { setEdit, reload } = useContext( AppContext );
 
     // Save post id on a state
     const [idState, setIdState] = useState(0);
@@ -15,6 +15,9 @@ export const PostsList = () => {
     // Post list state
     // TODO: improve
     const [ dataState, setDataState ] = useState( { init: 'init' } );
+
+    // Data state for modal
+    const [ modalDataState, setModalDataState ] = useState();
 
     // Effect to load post at init 
     useEffect(() => {
@@ -63,7 +66,14 @@ export const PostsList = () => {
                                         <span className="span-footer fw-light fst-italic text-muted">
                                             <small>By <span className="text-success">Author</span> - {  data.date.toString().substr(0,10) }</small>
                                                 <small>
-                                                    <i className="far fa-edit mx-2"></i>
+                                                <button
+                                                        className="btn-action"
+                                                        data-bs-toggle='modal'      
+                                                        data-bs-target='#addEditModal'
+                                                        onClick={ () => { setEdit( true ); setModalDataState( data ) }}
+                                                    >
+                                                        <i className="far fa-edit mx-2"></i>
+                                                    </button>
                                                     <button
                                                         className="btn-action"
                                                         data-bs-toggle='modal'      
@@ -84,7 +94,7 @@ export const PostsList = () => {
                 }
             </div>
             { <DeleteModal id={ idState }/> }
-            { <AddEditModal edit={ false } id={ dataState} /> }
+            { <AddEditModal data={ modalDataState } /> }
         </div>
     );
 };

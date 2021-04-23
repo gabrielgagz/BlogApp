@@ -5,13 +5,16 @@ import { addEditPost, getCategories } from '../../helpers/apiHelper';
 import { toastHelper } from '../../helpers/toastHelper';
 import '../../css/modals.css';
 
-export const AddEditModal = ( { edit, data } ) => {
+export const AddEditModal = ( { data } ) => {
 
-    const { reload, setReload } = useContext( AppContext );
+    // Get edit and reload from context
+    const { edit, reload, setReload } = useContext( AppContext );
 
+    // Set state for category
     const [ categoryState, setCategoryState ] = useState();
 
     const initialForm = {
+        id: (edit) ? data.id : '',
         categoryId: (edit) ? data.categoryId : '',
         content: (edit) ? data.content : '',
         date: (edit) ? data.date.toString().substr(0,10) : new Date().toISOString().split('T')[0],
@@ -23,6 +26,14 @@ export const AddEditModal = ( { edit, data } ) => {
 
     const { categoryId, content, date, image, title } = values;
 
+    // Reset form according to props
+    useEffect( () => {
+
+        reset(); 
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [ edit, data ] );
+
     // Load category data on init
     useEffect(() => {
 
@@ -30,7 +41,7 @@ export const AddEditModal = ( { edit, data } ) => {
             .then(data => setCategoryState( data ))
             .catch(reason => console.log(reason.message));
 
-    }, [])
+    }, []);
 
     const validateValues = ( e ) => {
 
@@ -52,11 +63,11 @@ export const AddEditModal = ( { edit, data } ) => {
 
     const handleInsert = () => {
 
-        addEditPost( values, 'POST' )
+        addEditPost( values, ( edit ) ? 'PATCH' : 'POST' )
             .then( data => {
                 
                 if (data.error) {
-                    toastHelper( '.container-posts', `ERROR: database operation has failed (${ data.error })`, 'ERROR' );
+                    toastHelper( '#addEditModal', `ERROR: database operation has failed (${ data.error })`, 'ERROR' );
                     return
                 }
 
@@ -66,10 +77,10 @@ export const AddEditModal = ( { edit, data } ) => {
                 setReload( !reload );
 
                 document.querySelector('.btn-form-close').click();
-                toastHelper( '.container-posts', `GREAT! You have a new post.`, 'SUCCESS' );
+                toastHelper( '.container-posts', `GREAT! Post has been processed.`, 'SUCCESS' );
                 return
             }})
-            .catch( err => toastHelper( '.container-posts', `FATAL: ${err}`, 'ERROR' )  );
+            .catch( err => toastHelper( '#addEditModal', `FATAL: ${err}`, 'ERROR' )  );
 
         reset(); 
 
@@ -180,6 +191,7 @@ export const AddEditModal = ( { edit, data } ) => {
                             type='button'
                             className='btn btn-secondary btn-form-close px-3'
                             data-bs-dismiss='modal'
+                            onClick={ reset }
                         >
                             Close
                         </button>

@@ -7,7 +7,13 @@ export const getPosts = async () => {
 
 export const addEditPost = async ( data, method ) => {
 
-    const response = await fetch(`${ process.env.REACT_APP_API_KEY }/posts`, { 
+    console.log( data )
+
+    const apiUrl = ( method === 'PATCH' ) ? `${ process.env.REACT_APP_API_KEY }/posts/${ data.id }` : `${ process.env.REACT_APP_API_KEY }/posts`;
+
+    console.log( apiUrl, method )
+
+    const response = await fetch( apiUrl, { 
         method: method, 
         body: JSON.stringify( data ),
         headers: {'Content-Type': 'application/json'} });
