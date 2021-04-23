@@ -6,7 +6,8 @@ import '../../css/navbar.css';
 
 export const NavBar = () => {
 
-    const [dataState, setDataState] = useState();
+    // TODO: improve
+    const [dataState, setDataState] = useState({ init: 'init' });
 
     useEffect(() => {
         
@@ -46,23 +47,24 @@ export const NavBar = () => {
                             </Link>
                         </span>
                         {
-                            ( dataState ) &&
-                            // Iterate trough catagories
-                            dataState.map( ( { id, name } ) => {
+                            ( dataState.length >0 ) &&
+                            
+                                // Iterate trough catagories
+                                dataState.map( ( { id, name } ) => {
 
-                                return (
-                                    <span className='nav-item' key={ id }>
-                                        <Link
-                                            className='nav-link active'
-                                            aria-current='page'
-                                            to={ name }
-                                        >
-                                            {name}
-                                        </Link>
-                                    </span>
-                                )
+                                    return (
+                                        <span className='nav-item' key={ id }>
+                                            <Link
+                                                className='nav-link active'
+                                                aria-current='page'
+                                                to={ name }
+                                            >
+                                                {name}
+                                            </Link>
+                                        </span>
+                                    )
 
-                            })
+                                })
                         }
                     </div>
                     

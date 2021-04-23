@@ -12,7 +12,8 @@ export const PostsList = () => {
     const [idState, setIdState] = useState(0);
 
     // Post list state
-    const [ dataState, setDataState ] = useState();
+    // TODO: improve
+    const [ dataState, setDataState ] = useState( { init: 'init' } );
 
     // Effect to load post at init 
     useEffect(() => {
@@ -29,7 +30,7 @@ export const PostsList = () => {
             <div className="row row-cols-1 row-cols-md-3 my-5 justify-content-center">
                 {
                 
-                ( dataState ) &&
+                ( dataState.length > 0 ) &&
                 
                 // Map the results and print a card per item
                 dataState.map( ( data ) => {
@@ -48,11 +49,11 @@ export const PostsList = () => {
                                 <img
                                     src={ data.image }
                                     className="card-img-top"
-                                    alt={ data.category.name }
+                                    alt={ data.category.name || 'Category' }
                                 />
                                 <div className="card-body">
                                     <div className={`card-category border border-${ categoryColor } border-2 rounded text-${ categoryColor } text-center py-1 px-3`}>
-                                        <small>{ data.category.name }</small>
+                                        <small>{ data.category.name || 'No Category' }</small>
                                     </div>
                                     <h5 className="card-title mt-4 my-3">
                                         [ { data.title } ]
