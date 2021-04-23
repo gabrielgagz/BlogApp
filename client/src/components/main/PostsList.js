@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
 import { getPosts } from '../../helpers/apiHelper';
 import { AppContext } from '../../context/AppContext';
-import "../../css/postlist.css";
 import { DeleteModal } from '../modal/DeleteModal';
 import { AddEditModal } from "../modal/AddEditModal";
+import "../../css/postlist.css";
 
 export const PostsList = () => {
 
@@ -62,6 +62,9 @@ export const PostsList = () => {
                                     <h5 className="card-title mt-4 my-3">
                                         [ { data.title } ]
                                     </h5>
+                                    <div className='card-content my-3 blockquote-footer'>
+                                        { data.content }
+                                    </div>
                                     <p>
                                         <span className="span-footer fw-light fst-italic text-muted">
                                             <small>By <span className="text-success">Author</span> - {  data.date.toString().substr(0,10) }</small>

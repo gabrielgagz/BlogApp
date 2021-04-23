@@ -52,8 +52,23 @@ export const AddEditModal = ( { data } ) => {
             return;
         }
 
+        if ( content.length > 385 ) {
+            toastHelper( '#addEditModal', 'Content max characters: 385', 'ERROR' );
+            return;
+        }
+
+        if ( title.length > 50 ) {
+            toastHelper( '#addEditModal', 'Title max characters: 50', 'ERROR' );
+            return;
+        }
+
         if ( categoryId === '' ) {
             toastHelper( '#addEditModal', 'You must choose a category', 'ERROR' );
+            return;
+        }
+
+        if ( image.match(/^http.*\.(jpeg|jpg|gif|png)$/) === null ) {
+            toastHelper( '#addEditModal', 'You must provide a valid image url', 'ERROR' );
             return;
         }
 
@@ -154,7 +169,8 @@ export const AddEditModal = ( { data } ) => {
                             <div className='input-group flex-nowrap'>
                                 <input 
                                     type='text' 
-                                    className='form-control' 
+                                    className='form-control'
+                                    maxLength='50'
                                     placeholder='Title' 
                                     name='title'
                                     value={ title }
@@ -177,7 +193,9 @@ export const AddEditModal = ( { data } ) => {
                                 <textarea 
                                     className='form-control' 
                                     placeholder='Post content....'
+                                    maxLength='385'
                                     name='content'
+                                    rows="7"
                                     value={ content }
                                     onChange={ handleInputChange }
                                     required
