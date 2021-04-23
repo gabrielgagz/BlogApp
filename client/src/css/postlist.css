@@ -26,3 +26,12 @@
 .fa-trash-alt:hover{
     color: #c70000;
 }
+
+.img-logo{
+    width: 50%;
+}
+
+.float-button {
+    display: flex;
+    justify-content: flex-end;
+}

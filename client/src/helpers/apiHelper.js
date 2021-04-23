@@ -4,3 +4,10 @@ export const getPosts = async () => {
     return await response.json();
 
 }
+
+export const getCategories = async () => {
+
+    const response = await fetch(`${ process.env.REACT_APP_API_KEY }/categories`);
+    return await response.json();
+
+}
