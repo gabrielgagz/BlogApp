@@ -1,6 +1,7 @@
 'use-strict'
 
 const Post = require('../models/posts');
+const Category = require('../models/categories');
 
 // Get all posts
 const getPosts = async (request, response) => {
@@ -8,7 +9,10 @@ const getPosts = async (request, response) => {
     try {
         
         const allPosts = await Post.findAll( { 
-            attributes: ['title', 'content', 'date', 'image'] 
+
+            attributes: ['id', 'title', 'content', 'date', 'image'],
+            include: [{ model: Category, attributes: ['name'] }]
+
         });
         return response.json( allPosts ) 
 
@@ -26,7 +30,7 @@ const getPostById = async (request, response) => {
     try {
         
         const idPost = await Post.findByPk( id, { 
-            attributes: ['title', 'content', 'date', 'image'] 
+            attributes: ['id','title', 'content', 'date', 'image'] 
         } );
         return response.json( idPost ) 
 

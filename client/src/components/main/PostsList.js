@@ -26,7 +26,7 @@ export const PostsList = () => {
                 ( dataState ) &&
                 
                 // Map the results and print a card per item
-                dataState.map( ( { id, category, date,  image, title } ) => {
+                dataState.map( ( data ) => {
 
                     // Choose a random color for category label
                     const setCategoryColor = () => {
@@ -34,27 +34,26 @@ export const PostsList = () => {
                         return ['info', 'warning', 'primary', 'secondary'].sort(() => Math.random() - Math.random()).slice(0,1);
                 
                     }
-
                     const categoryColor = setCategoryColor();
                 
                     return (
-                        <div className="col" key={ id }>
+                        <div className="col">
                             <div className="card m-3 shadow border-0 animate__animated animate__fadeIn">
                                 <img
-                                    src={ image }
+                                    src={ data.image }
                                     className="card-img-top"
                                     alt="..."
                                 />
                                 <div className="card-body">
                                     <div className={`card-category border border-${ categoryColor } border-2 rounded text-${ categoryColor } text-center py-1 px-3`}>
-                                        <small>{ category }</small>
+                                        <small>{ data.category.name }</small>
                                     </div>
                                     <h5 className="card-title mt-4 my-3">
-                                        [ { title } ]
+                                        [ { data.title } ]
                                     </h5>
                                     <p>
                                         <span className="fw-light fst-italic text-muted">
-                                            <small>By <span className="text-success">Author</span> - {  date.toString().substr(0,10) }</small>
+                                            <small>By <span className="text-success">Author</span> - {  data.date.toString().substr(0,10) }</small>
                                         </span>
                                     </p>
                                 </div>
