@@ -34,7 +34,7 @@ export const NavBar = () => {
                 >
                     <span className='navbar-toggler-icon'></span>
                 </button>
-                <div className='collapse navbar-collapse justify-content-center' id='navbarNav'>
+                <div className='nav-center collapse navbar-collapse justify-content-center' id='navbarNav'>
                     <div className='navbar-nav'>
                         <span className='nav-item'>
                             <Link
@@ -48,10 +48,10 @@ export const NavBar = () => {
                         {
                             ( dataState ) &&
                             // Iterate trough catagories
-                            dataState.map( ( {name} ) => {
+                            dataState.map( ( { id, name } ) => {
 
                                 return (
-                                    <span className='nav-item'>
+                                    <span className='nav-item' key={ id }>
                                         <Link
                                             className='nav-link active'
                                             aria-current='page'

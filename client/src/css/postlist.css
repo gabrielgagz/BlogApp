@@ -30,8 +30,3 @@
 .img-logo{
     width: 50%;
 }
-
-.float-button {
-    display: flex;
-    justify-content: flex-end;
-}
