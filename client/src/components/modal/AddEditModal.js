@@ -1,11 +1,14 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../context/AppContext';
 import { useForm } from '../../hooks/useForm';
+import { getCategories } from '../../helpers/apiHelper';
 import '../../css/modals.css';
 
 export const AddEditModal = ( { edit, data } ) => {
 
     const { reload, setReload } = useContext( AppContext );
+
+    const [ categoryState, setCategoryState ] = useState();
 
     const initialForm = {
         categoryId: (edit) ? data.categoryId : '',
@@ -19,17 +22,30 @@ export const AddEditModal = ( { edit, data } ) => {
 
     const { categoryId, content, date, image, title } = values;
 
+    // Load category data on init
+    useEffect(() => {
+
+        getCategories()
+            .then(data => setCategoryState( data ))
+            .catch(reason => console.log(reason.message));
+
+    }, [])
+
     // Reset form according to props
     useEffect( () => {
 
         reset(); 
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [ edit, data ] );
+    }, [ edit, data, categoryState ] );
 
     const validateValues = ( e ) => {
 
         e.preventDefault();
+
+        console.log( values )
+
+        reset(); 
 
     }
 
@@ -64,14 +80,25 @@ export const AddEditModal = ( { edit, data } ) => {
                             <div className='input-group flex-nowrap'>
                                 <select 
                                     className='form-select'
-                                    name='type'
-                                    value={ ( data ) ? data.category.name : '' }
+                                    name='categoryId'
+                                    value={ ( data ) ? categoryId : '' }
                                     onChange={ handleInputChange }
                                     disabled= { ( edit ) ? true : false }
                                 >
-                                    <option value=''>
+                                    <option value={ -1 }>
                                         Choose Category
                                     </option>
+                                    {
+                                        ( categoryState ) &&
+                                        categoryState.map( (categoryData) => {
+
+                                            return (
+                                            <option value={ categoryData.id } key={ categoryData.id }>
+                                                { categoryData.name }
+                                            </option>
+                                            )
+                                        })
+                                    }
                                 </select>
                             </div>
                             <div className='input-group flex-nowrap' >
