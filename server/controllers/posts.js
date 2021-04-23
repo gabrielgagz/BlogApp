@@ -11,7 +11,10 @@ const getPosts = async (request, response) => {
         const allPosts = await Post.findAll( { 
 
             attributes: ['id', 'title', 'content', 'date', 'image'],
-            include: [{ model: Category, attributes: ['name'] }]
+            include: [{ model: Category, attributes: ['name'] }],
+            order: [
+                ['date', 'DESC'],
+            ],
 
         });
         return response.json( allPosts ) 
@@ -58,7 +61,7 @@ const createPost = async (request, response) => {
 
     } catch (error) {
         
-        response.status(400).send(error);;
+        response.status(400).send(error);
 
     } 
 }
