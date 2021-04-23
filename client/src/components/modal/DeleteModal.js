@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
 import { deletePost } from '../../helpers/apiHelper';
+import { toastHelper } from '../../helpers/toastHelper';
 
 export const DeleteModal = ( data ) => {
 
@@ -14,7 +15,7 @@ export const DeleteModal = ( data ) => {
             .then( data => {
                 
                 if (data.error) {
-                    toast( '.span-toast', `ERROR: database operation has failed (${ data.error })`, 'ERROR' );
+                    toastHelper( '.span-toast', `ERROR: database operation has failed (${ data.error })`, 'ERROR' );
                     return
                 }
 
