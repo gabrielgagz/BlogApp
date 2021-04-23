@@ -1,4 +1,28 @@
+.btn-add, .btn-send {
+    background-color: #11b8a1;
+    color: white;
+    border: none;
+}
+
+.btn-add:hover, .btn-send:hover {
+    background-color: #12a390;
+    color: white;
+}
+
+.modal-body {
+    white-space: pre;
+}
+
 .modal-header-delete {
     background-color: #dc3545;
     color: white;
+}
+
+.modal-header-add {
+    color: white;
+}
+
+.input-group{
+    margin-top: 15px;
+    margin-bottom: 15px;
 }

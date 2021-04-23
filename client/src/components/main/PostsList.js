@@ -3,6 +3,7 @@ import { getPosts } from '../../helpers/apiHelper';
 import { AppContext } from '../../context/AppContext';
 import "../../css/postlist.css";
 import { DeleteModal } from '../modal/DeleteModal';
+import { AddEditModal } from "../modal/AddEditModal";
 
 export const PostsList = () => {
 
@@ -83,6 +84,7 @@ export const PostsList = () => {
                 }
             </div>
             { <DeleteModal id={ idState }/> }
+            { <AddEditModal edit={ false } id={ dataState} /> }
         </div>
     );
 };

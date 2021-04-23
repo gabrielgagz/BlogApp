@@ -70,7 +70,11 @@ export const NavBar = () => {
                     
                 </div>
                 <div className='justify-content-end'>
-                            <button className='btn btn-outline-secondary'>
+                            <button
+                                className="btn btn-outline-secondary"
+                                data-bs-toggle='modal'      
+                                data-bs-target='#addEditModal'
+                            >
                                 New Post
                             </button>
                 </div>
