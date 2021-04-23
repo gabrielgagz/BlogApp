@@ -52,8 +52,12 @@ export const PostsList = () => {
                                         [ { data.title } ]
                                     </h5>
                                     <p>
-                                        <span className="fw-light fst-italic text-muted">
+                                        <span className="span-footer fw-light fst-italic text-muted">
                                             <small>By <span className="text-success">Author</span> - {  data.date.toString().substr(0,10) }</small>
+                                            <small>
+                                                <i className="far fa-edit mx-2"></i>
+                                                <i className="far fa-trash-alt mx-2"></i>
+                                            </small>
                                         </span>
                                     </p>
                                 </div>
