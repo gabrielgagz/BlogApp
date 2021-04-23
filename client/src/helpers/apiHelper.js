@@ -5,6 +5,13 @@ export const getPosts = async () => {
 
 }
 
+export const deletePost = async ( id ) => {
+
+    const response = await fetch(`${ process.env.REACT_APP_API_KEY }/posts/${ id }`, { method: 'DELETE', headers: {'Content-Type': 'application/json'} });
+    return await response.json();
+
+}
+
 export const getCategories = async () => {
 
     const response = await fetch(`${ process.env.REACT_APP_API_KEY }/categories`);
