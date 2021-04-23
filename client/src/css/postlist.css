@@ -1,3 +1,8 @@
+.btn-action{
+    border: none;
+    background: none;
+}
+
 .card-category {
     display: inline-block;
 }

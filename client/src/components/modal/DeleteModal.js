@@ -2,8 +2,9 @@ import React, { useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
 import { deletePost } from '../../helpers/apiHelper';
 import { toastHelper } from '../../helpers/toastHelper';
+import '../../css/modals.css';
 
-export const DeleteModal = ( data ) => {
+export const DeleteModal = ( {id} ) => {
 
     const { reload, setReload } = useContext( AppContext );
 
@@ -11,11 +12,11 @@ export const DeleteModal = ( data ) => {
 
         e.preventDefault();
     
-        deletePost( data.id )
+        deletePost( id )
             .then( data => {
                 
                 if (data.error) {
-                    toastHelper( '.span-toast', `ERROR: database operation has failed (${ data.error })`, 'ERROR' );
+                    toastHelper( '.container-posts', `ERROR: database operation has failed (${ data.error })`, 'ERROR' );
                     return
                 }
 
@@ -25,9 +26,10 @@ export const DeleteModal = ( data ) => {
                 setReload( !reload );
 
                 document.querySelector('.btn-delete-close').click();
+                toastHelper( '.container-posts', `GREAT! The post has been removed`, 'SUCCESS' );
                 return
             }})
-            .catch(reason => console.log(reason.message));
+            .catch( err => toastHelper( '.container-posts', `FATAL: ${err}`, 'ERROR' )  );
     }
 
     return (
@@ -56,7 +58,7 @@ export const DeleteModal = ( data ) => {
                         ></button>
                     </div>
                     <div className='modal-body text-center modal-delete-text'>
-                        'Are you sure you want to remove this post'
+                        Are you sure you want to remove this post
                     </div>
                     <div className='modal-footer justify-content-center'>
                         <button

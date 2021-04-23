@@ -1,14 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { getPosts } from '../../helpers/apiHelper';
+import { AppContext } from '../../context/AppContext';
 import "../../css/postlist.css";
+import { DeleteModal } from '../modal/DeleteModal';
 
 export const PostsList = () => {
+
+    const { reload } = useContext( AppContext );
+
+    // Save post id on a state
+    const [idState, setIdState] = useState(0);
 
     // Post list state
     const [ dataState, setDataState ] = useState();
 
     // Effect to load post at init 
-    // TODO: use context to reload content
     useEffect(() => {
 
         // Get all posts
@@ -16,10 +22,10 @@ export const PostsList = () => {
             .then(data => setDataState( data ))
             .catch(reason => console.log(reason.message));
         
-    }, []);
+    }, [ reload ]);
 
     return (
-        <div className="container-fluid px-5">
+        <div className="container-fluid container-posts px-5">
             <div className="row row-cols-1 row-cols-md-3 my-5 justify-content-center">
                 {
                 
@@ -56,7 +62,14 @@ export const PostsList = () => {
                                             <small>By <span className="text-success">Author</span> - {  data.date.toString().substr(0,10) }</small>
                                                 <small>
                                                     <i className="far fa-edit mx-2"></i>
-                                                    <i className="far fa-trash-alt mx-2"></i>
+                                                    <button
+                                                        className="btn-action"
+                                                        data-bs-toggle='modal'      
+                                                        data-bs-target='#deleteModal'
+                                                        onClick={ () => setIdState( data.id ) }
+                                                    >
+                                                        <i className="far fa-trash-alt mx-2"></i>
+                                                    </button>
                                                 </small>
                                         </span>
                                     </p>
@@ -68,6 +81,7 @@ export const PostsList = () => {
 
                 }
             </div>
+            { <DeleteModal id={ idState }/> }
         </div>
     );
 };
