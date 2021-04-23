@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../context/AppContext';
 import { useForm } from '../../hooks/useForm';
-import { getCategories } from '../../helpers/apiHelper';
+import { addEditPost, getCategories } from '../../helpers/apiHelper';
+import { toastHelper } from '../../helpers/toastHelper';
 import '../../css/modals.css';
 
 export const AddEditModal = ( { edit, data } ) => {
@@ -31,19 +32,44 @@ export const AddEditModal = ( { edit, data } ) => {
 
     }, [])
 
-    // Reset form according to props
-    useEffect( () => {
-
-        reset(); 
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [ edit, data, categoryState ] );
-
     const validateValues = ( e ) => {
 
         e.preventDefault();
 
-        console.log( values )
+        if ( content === '' || image === '' || title === '' ) {
+            toastHelper( '#addEditModal', 'You cannot send empty values.', 'ERROR' );
+            return;
+        }
+
+        if ( categoryId === '' ) {
+            toastHelper( '#addEditModal', 'You must choose a category', 'ERROR' );
+            return;
+        }
+
+        handleInsert();
+
+    }
+
+    const handleInsert = () => {
+
+        addEditPost( values, 'POST' )
+            .then( data => {
+                
+                if (data.error) {
+                    toastHelper( '.container-posts', `ERROR: database operation has failed (${ data.error })`, 'ERROR' );
+                    return
+                }
+
+                if (data.success) {
+
+                // Change context to refresh layout
+                setReload( !reload );
+
+                document.querySelector('.btn-form-close').click();
+                toastHelper( '.container-posts', `GREAT! You have a new post.`, 'SUCCESS' );
+                return
+            }})
+            .catch( err => toastHelper( '.container-posts', `FATAL: ${err}`, 'ERROR' )  );
 
         reset(); 
 
@@ -81,7 +107,7 @@ export const AddEditModal = ( { edit, data } ) => {
                                 <select 
                                     className='form-select'
                                     name='categoryId'
-                                    value={ ( data ) ? categoryId : '' }
+                                    value={ categoryId  }
                                     onChange={ handleInputChange }
                                     disabled= { ( edit ) ? true : false }
                                 >
