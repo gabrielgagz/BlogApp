@@ -8,7 +8,7 @@ const getCategories = async (request, response) => {
     try {
         
         const allCategories = await Category.findAll( { 
-            attributes: ['name'] 
+            attributes: ['id', 'name'] 
         } );
         return response.json( allCategories ) 
 
@@ -26,7 +26,7 @@ const getCategoryById = async (request, response) => {
     try {
         
         const idCategory = await Category.findByPk( id, { 
-            attributes: ['name'] 
+            attributes: ['id', 'name'] 
         } );
         return response.json( idCategory ) 
 
