@@ -8,8 +8,8 @@ export const AppRouter = () => {
         <Router>
             <>
                 <Switch>
-                    <Route exact path='/blog' component={ MainScreen } />
                     <Route exact path='/' component={ MainScreen } />
+                    <Route exact path='/:urlcategory' component={ MainScreen } />
                     <Redirect to='/' />
                 </Switch>
             </>

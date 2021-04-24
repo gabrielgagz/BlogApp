@@ -4,8 +4,11 @@ import { AppContext } from '../../context/AppContext';
 import { DeleteModal } from '../modal/DeleteModal';
 import { AddEditModal } from "../modal/AddEditModal";
 import "../../css/postlist.css";
+import { useParams } from "react-router";
 
 export const PostsList = () => {
+
+    const { urlcategory } = useParams();
 
     const { setEdit, reload } = useContext( AppContext );
 
@@ -48,6 +51,10 @@ export const PostsList = () => {
                     const categoryColor = setCategoryColor();
                 
                     return (
+
+                        // Filter by category
+                        ( data.category.name === urlcategory || !urlcategory ) &&
+
                         <div className="col" key={ data.id }>
                             <div className="card m-3 shadow border-0 animate__animated animate__fadeIn">
                                 <img
