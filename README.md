@@ -1,5 +1,7 @@
 # BlogApp
 
+![Screenshot](https://raw.githubusercontent.com/gabrielgagz/BlogApp/main/Screenshot.png)
+
 Made it with React, Node.js and Express.
 
 Regenerate node modules (client/server):
