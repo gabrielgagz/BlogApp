@@ -20,7 +20,7 @@ export const MainScreen = () => {
                                 data-bs-target='#addEditModal'
                                 onClick={ () => setEdit(false) }
                             >
-                                <i class="fas fa-feather"></i>
+                                <i className="fas fa-feather"></i>
                     </button>
                 </AppContext.Provider>
             </>
