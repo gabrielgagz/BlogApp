@@ -47,11 +47,11 @@ export const NavBar = () => {
                                 aria-current='page'
                                 to='/'
                             >
-                                All
+                                { ( dataState.length > 0 ) && 'All' }
                             </Link>
                         </span>
                         {
-                            ( dataState.length >0 ) &&
+                            ( dataState.length > 0 ) &&
                             
                                 // Iterate trough catagories
                                 dataState.map( ( { id, name } ) => {
