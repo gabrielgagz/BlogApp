@@ -25,6 +25,10 @@
     display: block;
 }
 
+.container-posts{
+    padding: 0 4em 0 4em;
+}
+
 .span-footer{
     text-align: justify;
     font-size: 1rem;
@@ -42,4 +46,12 @@
 
 .img-logo{
     width: 50%;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .container-posts{
+        padding: 0 0.5em 0 0.5em;
+    }
+
 }

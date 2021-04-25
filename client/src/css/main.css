@@ -1,0 +1,17 @@
+.btn-newpost{
+    border-radius:50%;
+    position: fixed;
+    bottom: 40px;
+    color:white;
+    background-color: black;
+    border: none;
+    right: 40px;
+    opacity: 0.7;
+    padding: 1.5em;
+}
+
+.btn-newpost:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    opacity: 1;
+}

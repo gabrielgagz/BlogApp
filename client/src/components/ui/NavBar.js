@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getCategories } from '../../helpers/apiHelper';
-import { AppContext } from '../../context/AppContext';
 import logo from '../../assets/logo.svg';
 import '../../css/navbar.css';
 
@@ -9,9 +8,6 @@ export const NavBar = () => {
 
     // TODO: improve
     const [dataState, setDataState] = useState({ init: 'init' });
-
-    // Edit State
-    const { setEdit } = useContext( AppContext );
 
     useEffect(() => {
         
@@ -39,9 +35,9 @@ export const NavBar = () => {
                 >
                     <span className='navbar-toggler-icon'></span>
                 </button>
-                <div className='nav-center collapse navbar-collapse justify-content-center' id='navbarNav'>
-                    <div className='navbar-nav'>
-                        <span className='nav-item'>
+                <div className='nav-center collapse navbar-collapse justify-content-center w-100' id='navbarNav'>
+                    <div className='navbar-nav text-center justify-content-start'>
+                        <div className='nav-item'>
                             <Link
                                 className='nav-link active'
                                 aria-current='page'
@@ -49,7 +45,7 @@ export const NavBar = () => {
                             >
                                 { ( dataState.length > 0 ) && 'All' }
                             </Link>
-                        </span>
+                        </div>
                         {
                             ( dataState.length > 0 ) &&
                             
@@ -71,17 +67,8 @@ export const NavBar = () => {
                                 })
                         }
                     </div>
-                    
+                    <div className='justify-content-end'>
                 </div>
-                <div className='justify-content-end'>
-                            <button
-                                className="btn btn-outline-secondary"
-                                data-bs-toggle='modal'      
-                                data-bs-target='#addEditModal'
-                                onClick={ () => setEdit(false) }
-                            >
-                                New Post
-                            </button>
                 </div>
             </div>
         </nav>

@@ -33,7 +33,7 @@ export const PostsList = () => {
     }, [ reload ]);
 
     return (
-        <div className="container-fluid container-posts px-5">
+        <div className="container-fluid container-posts">
             <div className="row row-cols-1 row-cols-md-3 my-5 justify-content-center">
                 {
                 
