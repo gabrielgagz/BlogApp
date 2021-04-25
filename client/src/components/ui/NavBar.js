@@ -19,7 +19,7 @@ export const NavBar = () => {
     }, []);
 
     return (
-        <nav className='navbar navbar-expand-lg navbar-dark bg-dark py-4 shadow d-flex px-2'>
+        <nav className='navbar navbar-expand-lg navbar-dark bg-dark py-4 shadow d-flex px-3'>
             <div className='container-fluid'>
                 <Link className='justify-content-start ms-2' to='/'>
                     <img className='img-logo img-fluid' src={ logo } alt='Logo'/>
@@ -35,7 +35,7 @@ export const NavBar = () => {
                 >
                     <span className='navbar-toggler-icon'></span>
                 </button>
-                <div className='nav-center collapse navbar-collapse justify-content-center w-100' id='navbarNav'>
+                <div className='nav-center collapse navbar-collapse justify-content-end' id='navbarNav'>
                     <div className='navbar-nav text-center justify-content-start'>
                         <div className='nav-item'>
                             <Link
